@@ -1,0 +1,19 @@
+.flash-form {
+  font-family:monospace;
+}
+
+.form-label {
+  font-family:Helvetica, sans-serif;
+}
+
+.form-invalid {
+  color:red;
+  font-style: italic;
+}
+
+.invalid-feedback {
+  color:red;
+  font-size:small;
+  margin-bottom: -20px;
+  margin-top: 10px;
+}

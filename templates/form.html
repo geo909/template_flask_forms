@@ -1,0 +1,74 @@
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+<h1>Test</h1>
+<form method="POST" action="{{ url_for('myform') }}">
+
+    {{ form.csrf_token}}
+
+    {{ form.fhcode.label(class_="form-label")}} 
+    {% if form.fhcode.errors %}
+        {{ form.fhcode(class="form-invalid") }}
+        <div class="invalid-feedback">
+        {% for error in form.fhcode.errors %}
+            {{ error }}
+        {% endfor %}
+        </div>
+        {% else %}
+            {{ form.fhcode }}
+    {% endif %}
+    <br> <br>
+    {{ form.name.label(class_="form-label")}} 
+    {% if form.name.errors %}
+        {{ form.name(class="form-invalid") }}
+        <div class="invalid-feedback">
+        {% for error in form.name.errors %}
+            {{ error }}
+        {% endfor %}
+        </div>
+        {% else %}
+            {{ form.name }}
+    {% endif %}
+    <br> <br>
+    {{ form.email.label(class_="form-label")}}
+    {% if form.email.errors %}
+        {{ form.email(class="form-invalid") }}
+        <div class="invalid-feedback">
+        {% for error in form.email.errors %}
+            {{ error }}
+        {% endfor %}
+        </div>
+        {% else %}
+            {{ form.email }}
+    {% endif %}
+    <br> <br>
+    {{ form.comments.label(class_="form-label")}} {{ form.comments }}
+    <br> <br>
+    {{ form.discount.label(class_="form-label")}} {{ form.discount }}
+    <br> <br>
+
+    <input type="submit" value="Submit">
+
+    <br> <br>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <p> Your enty was submitted successfully: </p>
+            <ul class=flashes>
+                {% for category, message in messages %}
+                    <li class="{{ category }}"> {{ message }} </li>
+                {% endfor %}
+            </ul>
+            <p>If you've made an error, <a href="mailto:g.tzanakis@ferryhopper.com">email me</a> and include the above information.</p>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Alternatively, all errors at the bottom: 
+
+    {% for field, errors in form.errors.items() %}
+        <p style="color:red;">{{ ', '.join(errors) }}</p>
+    {% endfor %}
+
+    -->
+
+</form>
